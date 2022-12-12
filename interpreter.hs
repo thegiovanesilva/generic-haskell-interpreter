@@ -7,6 +7,8 @@ data Expr = BTrue
           | Num Int
           | Add Expr Expr
           | And Expr Expr
+          | Or Expr Expr
+          | If Exp Expr Expr
           deriving Show 
 
 step :: Expr -> Maybe Expr
@@ -21,8 +23,26 @@ step (Add e1 e2) = case step e1 of
 
 step (And BTrue e2) = Just e2
 step (And BFalse _) = Just BFalse
+
 step (And e1 e2) = case step e1 of
                     Just e1' -> Just (And e1' e2)
                     _        -> Nothing
+
+step e = Just e
+
+
+step (Or BTrue _) = Just BTrue
+step (Or BFalse e2) = Just e2
+step (Or e1 e2) = case step e1 of
+                   Just e1 -> (Or e1' e2)
+                   _       -> Nothing
+
+step e = Just e
+
+step (If BTrue e1 _)
+step (If BFalse _ e2)
+step (If e e1 e2) =  case step e of
+                      Just e' -> Just (If e' e1 e2)
+                      _       -> Nothing
 
 step e = Just e
