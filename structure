@@ -1,0 +1,8 @@
+modules:
+    Interpreter: step
+
+    TypeChecker: typeof
+
+    Lexer
+
+    Parser
