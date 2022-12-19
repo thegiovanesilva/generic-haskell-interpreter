@@ -1,3 +1,4 @@
+
 module Lexer where 
 
 import Data.Char 
@@ -16,7 +17,7 @@ data Expr = BTrue
 
 data Token = TokenTrue 
            | TokenFalse 
-           | TokenNum Int
+           | TokenNum Int 
            | TokenAdd 
            | TokenAnd
            | TokenIf 
@@ -44,11 +45,3 @@ lexKW cs = case span isAlpha cs of
              ("if", rest)    -> TokenIf : lexer rest 
              ("then", rest)  -> TokenThen : lexer rest 
              ("else", rest)  -> TokenElse : lexer rest 
-
-lexKW :: String -> [Token]
-lexKW cs = case span isAlpha cs of
-            | ("true", rest) -> TokenTrue
-            | ("false", rest) -> TokenFalse
-            | ("if", rest) -> TokenIf
-            | ("then", rest) -> TokenThen
-            | ("else", rest) -> TokenElse

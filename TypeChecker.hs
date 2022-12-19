@@ -1,4 +1,4 @@
-1module TypeChecker where 
+module TypeChecker where 
 
 import Lexer
 
@@ -21,3 +21,9 @@ typeof (If e e1 e2) =
                                               Nothing
                       _                  -> Nothing 
       _          -> Nothing
+
+typecheck :: Expr -> Expr
+typecheck e = case typeof e of
+              Just _ -> e
+              _      -> error "Type error"
+
