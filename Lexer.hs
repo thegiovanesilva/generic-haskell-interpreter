@@ -12,7 +12,10 @@ data Expr = BTrue
           | Num Int 
           | Add Expr Expr 
           | And Expr Expr 
-          | If Expr Expr Expr 
+          | If Expr Expr Expr
+          | Var String
+          | Lam String Expr
+          | App Expr Expr
           deriving Show 
 
 data Token = TokenTrue 
